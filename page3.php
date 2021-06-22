@@ -12,17 +12,26 @@
 
   <h3 style="color: red;">Page 1 [History]</h3>
   <h3 style="color: red;">Conversion Site</h3>
-  <p><a href="page1.php">1.Home</a><a href="page2.php">2.Coversion Rate</a><a href="page3.php">3.History</a></p>
-<?php
-// Store JSON data in a PHP variable
-$json = '{"Peter":65,"Harry":80,"John":78,"Clark":90}';
- 
-var_dump(json_decode($json));
+  <p><a style="margin-left:30px;" href="page1.php">1.Home</a><a style="margin-left:10px;" href="page2.php">2.Conversion Rate</a><a style="margin-left:10px;" href="page3.php">3.History</a></p>
+  <?php
+$readData = read();
+$arr1 = explode("\n", $readData);
 
+echo "<ol>";
+for($i = 0; $i < count($arr1) - 1; $i++) {
+$arr2 = explode(",", $arr1[$i]);
+echo "<li>" . "Feet: " . $arr2[0] . " Inches: " . $arr2[1]. "</li>";
+}
+echo "</ol>";
+
+ function read() {
+$fileName = "data.txt";
+$resource = fopen($fileName, "r");
+$fr = fread($resource, filesize($fileName));
+fclose($resource);
+return $fr;
+}
 ?>
-  
-
-
 
 
 
